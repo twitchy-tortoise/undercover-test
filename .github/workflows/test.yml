@@ -20,3 +20,7 @@ jobs:
         bundle exec rails db:create
         bundle exec rails db:migrate
         bundle exec rails test
+        ruby -e "$(curl -s https://undercover-ci.com/uploader.rb)" -- \
+                  --repo twitchy-tortoise/undercover-test \
+                  --commit $GITHUB_SHA \
+                  --lcov coverage/lcov/undercover-test.lcov
