@@ -2,7 +2,9 @@ require 'test_helper'
 
 class HomeControllerTest < ActionDispatch::IntegrationTest
   test "the truth" do
-    get "/home"
-    assert_equal 200, status
+    ApplicationController.any_instance.stubs(:current_user).returns(nil)
+    ENV['BETA_CODE'] = 'false'
+    get "/home?x=falsey"
+    assert_equal 302, status
   end
 end
