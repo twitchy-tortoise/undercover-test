@@ -4,9 +4,11 @@ SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
 SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
 SimpleCov.start do
   add_filter(/^\/test\//)
+  enable_coverage(:branch)
 end
 
 ENV['RAILS_ENV'] ||= 'test'
+require 'mocha/minitest'
 require 'rails/test_help'
 require_relative '../config/environment'
 
