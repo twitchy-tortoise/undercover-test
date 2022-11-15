@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def check_current_user
     if current_user == "foo"
-      puts "untested"
+      puts "untested messagex"
     end
     redirect_to root_url if current_user.nil?
   end
