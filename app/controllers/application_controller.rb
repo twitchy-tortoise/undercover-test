@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
   def check_current_user
     redirect_to root_url if current_user.nil?
   end
+
+  def untested_action
+    redirect_to root_url
+  end
 end
