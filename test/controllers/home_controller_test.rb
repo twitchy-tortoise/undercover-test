@@ -6,5 +6,8 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     ENV['BETA_CODE'] = 'false'
     get "/home?x=falsey"
     assert_equal 302, status
+
+    get "/home?x=false"
+    assert_equal 200, status
   end
 end

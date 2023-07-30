@@ -5,6 +5,7 @@ SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
 SimpleCov.start do
   add_filter(/^\/test\//)
   enable_coverage(:branch)
+  enable_coverage_for_eval
 end
 
 ENV['RAILS_ENV'] ||= 'test'
