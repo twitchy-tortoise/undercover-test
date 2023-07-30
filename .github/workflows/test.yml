@@ -1,10 +1,10 @@
 name: Rails Unit Tests
-on: [push, pull_request]
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
@@ -20,6 +20,6 @@ jobs:
         bundle exec rails db:migrate
         bundle exec rails test
         ruby -e "$(curl -s https://undercover-ci.com/uploader.rb)" -- \
-                  --repo twitchy-tortoise/undercover-test \
-                  --commit $GITHUB_SHA \
-                  --lcov coverage/lcov/undercover-test.lcov
+                          --repo twitchy-tortoise/undercover-test \
+                          --commit $GITHUB_SHA \
+                          --lcov coverage/lcov/undercover-test.lcov

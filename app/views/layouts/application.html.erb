@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <% if controller.class.name == "FancyController" %>
+      <h1>Undercover Agent 🕵️‍♂️</h1>
+    <% end %>
     <%= yield %>
   </body>
 </html>
