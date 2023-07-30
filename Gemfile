@@ -9,8 +9,8 @@ gem 'rails', '~> 7.0'
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker'
+# Use asset pipeline
+gem "sprockets-rails"
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

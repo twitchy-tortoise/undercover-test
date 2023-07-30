@@ -10,9 +10,8 @@ end
 
 ENV['RAILS_ENV'] ||= 'test'
 require 'mocha/minitest'
-require 'rails/test_help'
 require_relative '../config/environment'
-
+require 'rails/test_help'
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
   # parallelize(workers: :number_of_processors)
