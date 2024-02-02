@@ -20,6 +20,6 @@ jobs:
         bundle exec rails db:migrate
         bundle exec rails test
         ruby -e "$(curl -s https://undercover-ci.com/uploader.rb)" -- \
-                  --repo twitchy-tortoise/undercover-test \
-                  --commit $GITHUB_SHA \
-                  --lcov coverage/lcov/undercover-test.lcov
+                --repo twitchy-tortoise/undercover-test \
+                --commit ${{ github.event.pull_request.head.sha || github.sha }} \
+                --lcov coverage/lcov/undercover-test.lcov
