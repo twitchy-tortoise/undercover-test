@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class ChecksController < ApplicationController
   before_action :check_beta_cookie, only: :index
 
   def index
@@ -6,5 +6,8 @@ class HomeController < ApplicationController
   end
 
   def bounce
+    @foo = "bar"
+    @foo = "baz"
+    @foo = "bob"
   end
 end

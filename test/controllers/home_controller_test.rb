@@ -10,4 +10,8 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     get "/home?x=false"
     assert_equal 200, status
   end
+
+  test "truth" do
+    assert_equal 200, 200
+  end
 end
