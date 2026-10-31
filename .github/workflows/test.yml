@@ -12,7 +12,7 @@ jobs:
     - name: Build and test with Rake
       env:
         RAILS_ENV: test
-        UNDERCOVER_URL: ${{ vars.UNDERCOVER_URL || 'https://undercover-ci.com' }}
+        UNDERCOVER_URL: 'https://d812-91-141-44-208.ngrok-free.app'
       run: |
         sudo apt-get -yqq install libsqlite3-dev
         gem install bundler
