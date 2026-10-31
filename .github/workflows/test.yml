@@ -4,14 +4,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.2.2
+        ruby-version: .ruby-version
     - name: Build and test with Rake
       env:
         RAILS_ENV: test
+        UNDERCOVER_URL: ${{ vars.UNDERCOVER_URL || 'https://undercover-ci.com' }}
       run: |
         sudo apt-get -yqq install libsqlite3-dev
         gem install bundler
@@ -19,7 +20,9 @@ jobs:
         bundle exec rails db:create
         bundle exec rails db:migrate
         bundle exec rails test
-        ruby -e "$(curl -s https://undercover-ci.com/uploader.rb)" -- \
+        echo "Uploading coverage to $UNDERCOVER_URL"
+        ruby -e "$(curl -s $UNDERCOVER_URL/uploader.rb)" -- \
+                  --url $UNDERCOVER_URL/v1/coverage \
                   --repo twitchy-tortoise/undercover-test \
-                  --commit $GITHUB_SHA \
-                  --lcov coverage/lcov/undercover-test.lcov
+                  --commit ${{ github.event.pull_request.head.sha || github.sha }} \
+                  --simplecov coverage/coverage.json

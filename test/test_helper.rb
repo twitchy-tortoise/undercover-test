@@ -1,11 +1,10 @@
 require 'simplecov'
-require 'simplecov-lcov'
-SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
-SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
+require 'undercover/simplecov_formatter'
+SimpleCov.formatter = SimpleCov::Formatter::Undercover
 SimpleCov.start do
   add_filter(/^\/test\//)
   enable_coverage(:branch)
-  enable_coverage_for_eval
+  enable_coverage(:eval)
 end
 
 ENV['RAILS_ENV'] ||= 'test'
