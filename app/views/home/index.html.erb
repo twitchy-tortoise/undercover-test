@@ -1,2 +1,5 @@
 Hi! ✅
+<% if params[:greeting].present? %>
+  <p><%= params[:greeting] %></p>
+<% end %>
 From: <%= controller.class.name %>
