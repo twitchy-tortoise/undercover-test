@@ -6,4 +6,10 @@ class HomeController < ApplicationController
 
   def bounce
   end
+
+  private
+
+  def beta_cookie_expired?
+    cookies[:beta_sign_in].blank?
+  end
 end
