@@ -5,6 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
@@ -20,6 +22,15 @@ jobs:
         bundle exec rails db:create
         bundle exec rails db:migrate
         bundle exec rails test
+        echo "::group::simplecov patch (table)"
+        bundle exec simplecov patch --base origin/master || true
+        echo "::endgroup::"
+        bundle exec simplecov patch --base origin/master --annotate github > simplecov-annotations.txt || true
+        cat simplecov-annotations.txt
+        echo "simplecov patch emitted $(grep -c '^::' simplecov-annotations.txt) annotations"
+        echo "::group::undercover"
+        bundle exec undercover -c origin/master || true
+        echo "::endgroup::"
         echo "Uploading coverage to $UNDERCOVER_URL"
         ruby -e "$(curl -s $UNDERCOVER_URL/uploader.rb)" -- \
                   --url $UNDERCOVER_URL/v1/coverage \

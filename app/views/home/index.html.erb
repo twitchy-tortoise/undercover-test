@@ -1,2 +1,10 @@
 Hi! ✅
 From: <%= controller.class.name %>
+<% if params[:ref].present? %>
+  <p>Referred by <%= params[:ref] %></p>
+<% else %>
+  <p>Welcome!</p>
+<% end %>
+<% if params[:x] == "promo" %>
+  <p>Promo code applied</p>
+<% end %>
