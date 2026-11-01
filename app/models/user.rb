@@ -4,4 +4,10 @@ class User < ApplicationRecord
 
     email.split("@").last
   end
+
+  def display_name
+    return "Anonymous" if email.blank?
+
+    email.split("@").first.capitalize
+  end
 end
