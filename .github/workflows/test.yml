@@ -14,7 +14,7 @@ jobs:
         RAILS_ENV: test
         UNDERCOVER_URL: 'https://d812-91-141-44-208.ngrok-free.app'
       run: |
-        sudo apt-get -yqq install libsqlite3-dev
+        sudo apt-get -yqq install libsqlite3-dev libjitterentropy3-dev # rugged on ubuntu-26.04
         gem install bundler
         bundle install --jobs 4 --retry 3
         bundle exec rails db:create
