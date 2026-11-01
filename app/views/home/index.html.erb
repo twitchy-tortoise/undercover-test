@@ -1,2 +1,5 @@
 Hi! ✅
 From: <%= controller.class.name %>
+<% if params[:vip] == "yes" %>
+  <p>Welcome back!</p>
+<% end %>
