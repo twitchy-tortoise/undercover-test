@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :check_beta_cookie, only: :index
+  before_action :check_beta_cookie, only: :index, if: :beta_cookie_expired?
 
   def index
   end
